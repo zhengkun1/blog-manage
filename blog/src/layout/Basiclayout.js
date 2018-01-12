@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Layout, Menu, Icon } from 'antd';
-import styles from './Basiclayout.less'
+import { Link, Route } from 'dva/router';
+import styles from './Basiclayout.less';
+import Essaymanage from '../routes/essaymanage';
+import Contactpage from '../routes/contactpage';
 
 const { Header, Footer, Content, Sider } = Layout;
 
-class Basiclayout extends Component {
+class Basiclayout extends PureComponent {
   state = {
     collapsed: false,
   };
@@ -15,48 +18,56 @@ class Basiclayout extends Component {
   }
   render(){
     return(
-      <Layout style={{ height: '100vh' }}>
+      <Layout
+        style={{ height: '100vh' }}
+      >
         <Sider
           trigger={null}
           collapsible
           collapsed={this.state.collapsed}
           className={styles.sider}
         >
+          <img className={styles.logo} src="http://isujin.com/wp-content/themes/Diaspora/timthumb/timthumb.php?src=http://isujin.com/wp-content/uploads/2017/03/wallhaven-323459.jpg" alt="nihao" />
           <Menu
             mode="inline"
             defaultSelectedKeys={['1']}
+            className={styles.menu}
           >
             <Menu.Item key='1'>
               <Icon type="user" />
-              <span>你好</span>
+              <span>文章管理</span>
+              <Link to="/essay"></Link>
             </Menu.Item>
             <Menu.Item key='2'>
-              <Icon type="user" />
-              <span>你好</span>
-            </Menu.Item>
-            <Menu.Item key='3'>
-              <Icon type="user" />
-              <span>你好</span>
-            </Menu.Item>
-            <Menu.Item key='4'>
-              <Icon type="user" />
-              <span>你好</span>
+              <Icon type="github" />
+              <span>联系页面</span>
+              <Link to="/contact"></Link>
             </Menu.Item>
           </Menu>
         </Sider>
         <Layout>
           <Header className={styles.header}>
             <Icon
-              className="trigger"
+              className={styles.trigger}
               type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={this.toggle}
             />
           </Header>
-          <Content></Content>
-          <Footer></Footer>
+          <Content className={styles.content}>
+            <Route
+              path="/essay"
+              component={Essaymanage}
+            />
+            <Route
+              path="/contact"
+              component={Contactpage}
+            />
+          </Content>
+          <Footer className={styles.footer}>@this is K</Footer>
         </Layout>
       </Layout>
     )
   }
 }
+
 export default Basiclayout;

@@ -6,7 +6,7 @@ function RouterConfig({ history }) {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/" exact component={Basiclayout} />
+        <Route path="/" component={Basiclayout} />
       </Switch>
     </Router>
   );
