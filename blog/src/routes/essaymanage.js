@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
-import { Checkbox } from 'antd';
-import styles from './essaymanage.less'
-
-const CheckboxGroup = Checkbox.Group;
-const plainOptions = ['Apple', 'Pear', 'Orange'];
+import Essay from '../components/essay';
 
 class Essaymanage extends Component {
   state = {
     checkAll: false,
+    essay: [
+      {
+        title: '1',
+        aaa: '222',
+      },
+      {
+        title: '222222',
+        aaa: '33333333',
+      }
+    ]
   };
   render() {
     return(
-      <div className={styles.global}>
-        <Checkbox
-          onChange={this.onCheckAllChange}
-          checked={this.state.checkAll}
-        >
-          全选
-        </Checkbox>
-        <CheckboxGroup options={plainOptions} />
+      <div>
+        {
+          this.state.essay.map(item => (
+            <Essay title={item.title} desicription={item.aaa} />
+          ))
+        }
       </div>
     )
   }

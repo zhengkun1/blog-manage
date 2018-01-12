@@ -4,6 +4,7 @@ import { Link, Route } from 'dva/router';
 import styles from './Basiclayout.less';
 import Essaymanage from '../routes/essaymanage';
 import Contactpage from '../routes/contactpage';
+import Addarticle from '../routes/addarticle';
 
 const { Header, Footer, Content, Sider } = Layout;
 
@@ -33,15 +34,20 @@ class Basiclayout extends PureComponent {
             defaultSelectedKeys={['1']}
             className={styles.menu}
           >
+            <Menu.Item key='0'>
+              <Icon type="user" />
+              <span>添加文章</span>
+              <Link to="/add" />
+            </Menu.Item>
             <Menu.Item key='1'>
               <Icon type="user" />
-              <span>文章管理</span>
-              <Link to="/essay"></Link>
+              <span>文章列表</span>
+              <Link to="/essay" />
             </Menu.Item>
             <Menu.Item key='2'>
               <Icon type="github" />
               <span>联系页面</span>
-              <Link to="/contact"></Link>
+              <Link to="/contact" />
             </Menu.Item>
           </Menu>
         </Sider>
@@ -54,6 +60,10 @@ class Basiclayout extends PureComponent {
             />
           </Header>
           <Content className={styles.content}>
+            <Route
+              path="/add"
+              component={Addarticle}
+            />
             <Route
               path="/essay"
               component={Essaymanage}
