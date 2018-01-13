@@ -42,7 +42,7 @@ class Loginpage extends React.Component {
               />
             )}
           </FormItem>
-          <FormItem>
+          <FormItem className={styles.loginbutton}>
             {getFieldDecorator('remember', {
               valuePropName: 'checked',
               initialValue: true,
@@ -50,7 +50,7 @@ class Loginpage extends React.Component {
               <Checkbox>Remember me</Checkbox>
             )}
             <a
-              className="login-form-forgot"
+              className={styles.forget}
               href=""
             >Forgot password</a>
             <Button
@@ -58,7 +58,7 @@ class Loginpage extends React.Component {
               htmlType="submit"
               className="login-form-button"
             >
-              Log in
+              登录
             </Button>
             Or <a href="">register now!</a>
           </FormItem>
